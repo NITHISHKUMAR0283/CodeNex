@@ -2,6 +2,12 @@
 
 A Flask-based web application that provides movie recommendations using machine learning algorithms. The system uses TMDB dataset to suggest similar movies based on user input.
 
+## Demo Video
+
+Watch the application in action:
+
+https://github.com/NITHISHKUMAR0283/CodeNex/raw/main/code_nex-VEED.mp4
+
 ## Features
 
 - Search for movies in the database
