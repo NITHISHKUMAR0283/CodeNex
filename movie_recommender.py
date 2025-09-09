@@ -14,9 +14,22 @@ class MovieRec:
         self.similarity_matrix=None
         self.indices=None
     def load(self):
-        self.movies=pd.read_csv('tmdb_5000_movies.csv')
-        self.credits=pd.read_csv('tmdb_5000_credits.csv')
-        return True
+        import os
+        try:
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            movies_path = os.path.join(current_dir, 'tmdb_5000_movies.csv')
+            credits_path = os.path.join(current_dir, 'tmdb_5000_credits.csv')
+            
+            print(f"Looking for movies file at: {movies_path}")
+            print(f"Looking for credits file at: {credits_path}")
+            
+            self.movies=pd.read_csv(movies_path)
+            self.credits=pd.read_csv(credits_path)
+            print("CSV files loaded successfully")
+            return True
+        except Exception as e:
+            print(f"Error loading CSV files: {e}")
+            return False
         
     def clean(self):
         self.data=self.movies.merge(self.credits, left_on='id', right_on='movie_id')
