@@ -2,9 +2,9 @@
 
 A Flask-based web application that provides movie recommendations using machine learning algorithms. The system uses TMDB dataset to suggest similar movies based on user input.
 
-## 🚀 Live Demo
+## Live Demo
 
-**Try the app now:** https://web-production-bd588.up.railway.app
+**Try the Demo:** https://web-production-bd588.up.railway.app
 
 ## Demo Video
 
@@ -74,6 +74,9 @@ The application will start on `http://localhost:5000`
 ├── movie_recommender.py      # Movie recommendation logic
 ├── index.html               # Frontend interface
 ├── requirements.txt         # Python dependencies
+├── Procfile                 # Railway deployment configuration
+├── README.md                # Project documentation
+├── code_nex-VEED.mp4        # Demo video
 ├── tmdb_5000_credits.csv    # Movie credits data
 └── tmdb_5000_movies.csv     # Movie metadata
 ```
