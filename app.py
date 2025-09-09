@@ -29,15 +29,26 @@ def search():
 @app.route('/api/recommend')
 def recommend():
     movie=request.args.get('movie', '')
+    print(f"Recommendation request for: {movie}")
     if not movie:
         return jsonify({'error': 'Need movie name'})
     try:
+        if recommender is None:
+            print("Recommender not initialized!")
+            return jsonify({'error': 'System not ready'})
+        
+        print(f"Calling recommend function for: {movie}")
         recommendations=recommender.recommend(movie)
+        print(f"Got {len(recommendations) if recommendations else 0} recommendations")
+        
         if not recommendations:
+            print(f"No recommendations found for: {movie}")
             return jsonify({'error': f'Movie "{movie}" not found'})
         return jsonify({'recommendations': recommendations})
     except Exception as error:
-        print(f"Error: {error}")
+        print(f"Detailed error in recommend: {str(error)}")
+        import traceback
+        print(f"Traceback: {traceback.format_exc()}")
         return jsonify({'error': 'Error occurred'})
 if __name__=='__main__':
     print("Starting app...")
