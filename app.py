@@ -5,14 +5,24 @@ app=Flask(__name__)
 recommender=None
 def init():
     global recommender
-    print("Starting...")
-    recommender=MovieRec()
-    success=recommender.setup()
-    if success:
-        print("Ready!")
-    else:
-        print("Failed")
-    return success
+    print("Starting initialization...")
+    try:
+        recommender=MovieRec()
+        print("MovieRec object created")
+        success=recommender.setup()
+        if success:
+            print("MovieRec setup completed successfully!")
+            print("Ready!")
+        else:
+            print("MovieRec setup failed!")
+            recommender = None
+        return success
+    except Exception as e:
+        print(f"Error during initialization: {e}")
+        import traceback
+        print(f"Initialization traceback: {traceback.format_exc()}")
+        recommender = None
+        return False
 @app.route('/')
 def home():
     return send_file('index.html')
@@ -28,14 +38,17 @@ def search():
         return jsonify({'movies': []})
 @app.route('/api/recommend')
 def recommend():
+    global recommender
     movie=request.args.get('movie', '')
     print(f"Recommendation request for: {movie}")
     if not movie:
         return jsonify({'error': 'Need movie name'})
     try:
         if recommender is None:
-            print("Recommender not initialized!")
-            return jsonify({'error': 'System not ready'})
+            print("Recommender not initialized, trying lazy initialization...")
+            if not init():
+                print("Lazy initialization also failed!")
+                return jsonify({'error': 'System not ready'})
         
         print(f"Calling recommend function for: {movie}")
         recommendations=recommender.recommend(movie)
