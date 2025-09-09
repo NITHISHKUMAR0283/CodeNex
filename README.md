@@ -2,6 +2,10 @@
 
 A Flask-based web application that provides movie recommendations using machine learning algorithms. The system uses TMDB dataset to suggest similar movies based on user input.
 
+## 🚀 Live Demo
+
+**Try the app now:** https://web-production-bd588.up.railway.app
+
 ## Demo Video
 
 Watch the application in action:
