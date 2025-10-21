@@ -4,7 +4,7 @@ A Flask-based web application that provides movie recommendations using machine 
 
 ## Live Demo
 
-**Try the Demo:** https://web-production-bd588.up.railway.app
+**Try the Demo:** https://codenex.onrender.com/
 
 ## Demo Video
 
